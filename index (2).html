@@ -1,0 +1,1467 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Camp DIY - Tech Zone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e48aa;
+            --secondary: #9d50bb;
+            --accent: #4776e6;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --text: #e6e6e6;
+            --highlight: #00b4d8;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --bronze: #cd7f32;
+            --whatsapp: #25D366;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--darker), var(--primary));
+            padding: 20px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .partnership-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(110, 72, 170, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(110, 72, 170, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(110, 72, 170, 0); }
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--highlight);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--highlight);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: var(--whatsapp);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            animation: pulse-whatsapp 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 20%, rgba(110, 72, 170, 0.2) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--highlight), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: slideIn 1s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cta-button:hover::after {
+            opacity: 1;
+        }
+        
+        .hero-image {
+            margin-top: 50px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Groups Section */
+        .groups-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--darker), var(--primary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--highlight);
+        }
+        
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .groups-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .group-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            width: 300px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .group-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .group-card:hover::before {
+            opacity: 1;
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translate(-30%, -30%); }
+            100% { transform: rotate(45deg) translate(30%, 30%); }
+        }
+
+        .group-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .group-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--highlight);
+        }
+
+        .group-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .group-members {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .group-members i {
+            margin-left: 5px;
+        }
+
+        .join-button {
+            display: inline-block;
+            background: var(--whatsapp);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .join-button:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(18, 140, 126, 0.4);
+        }
+
+        /* Points System Section */
+        .points-system {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            position: relative;
+        }
+        
+        .points-system::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--dark));
+            z-index: 1;
+        }
+        
+        .points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .points-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .points-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .points-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .gold { color: var(--gold); }
+        .silver { color: var(--silver); }
+        .bronze { color: var(--bronze); }
+        
+        .points-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .points-card p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .points-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--highlight);
+        }
+
+        /* Enhanced Rewards Section */
+        .rewards-section {
+            padding: 80px 0;
+            background-color: var(--darker);
+        }
+
+        .reward-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .reward-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reward-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .reward-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .reward-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+
+        .reward-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .reward-requirements {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .reward-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .course-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course-card:hover .course-image img {
+            transform: scale(1.1);
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-category {
+            display: inline-block;
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--highlight);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .course-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .course-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .course-duration {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .course-level {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Leaderboard Section */
+        .leaderboard {
+            padding: 80px 0;
+            background-color: var(--darker);
+            position: relative;
+        }
+        
+        .leaderboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0, 180, 216, 0.05)" d="M0,100 L100,0 L100,100 Z"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+        
+        .leaderboard-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .leaderboard-table th {
+            background: rgba(0, 180, 216, 0.2);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .leaderboard-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .leaderboard-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .leaderboard-table tr:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .rank {
+            font-weight: 700;
+            width: 50px;
+        }
+        
+        .rank-1 { color: var(--gold); }
+        .rank-2 { color: var(--silver); }
+        .rank-3 { color: var(--bronze); }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .points-change {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .points-up {
+            color: #4caf50;
+        }
+        
+        .points-down {
+            color: #f44336;
+        }
+
+        /* Scholarship Section */
+        .scholarship-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scholarship-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .scholarship-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+        }
+        
+        .scholarship-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+        }
+        
+        .benefit-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--highlight);
+        }
+        
+        .apply-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+        }
+        
+        .apply-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: var(--highlight);
+            color: white;
+        }
+
+        /* Registration Section */
+        .registration {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .registration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255, 255, 255, 0.05)" d="M0,0 L100,0 L50,100 Z"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+        
+        .registration-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .registration h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .registration p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .register-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .register-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .register-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--highlight), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .register-button:hover::after {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 60px 0 30px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--highlight);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 20px;
+        }
+        
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-image {
+    flex: 1;
+    max-width: 400px; 
+    margin: 0 auto; 
+}
+
+.about-image img {
+    width: 100%;
+    height: auto; /* الحفاظ على نسبة الطول/العرض */
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
+}
+    
+}
+
+        /* Animations */
+        @keyframes floatUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        .animate-float-up {
+            animation: floatUp 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .group-card {
+                width: 100%;
+            }
+            
+            .reward-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Community Section Styles */
+        .community-section {
+            padding: 80px 0;
+            background-color: var(--darker);
+            text-align: center;
+        }
+        
+        .community-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .community-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .community-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .community-icon {
+            font-size: 2.5rem;
+            color: var(--highlight);
+            margin-bottom: 20px;
+        }
+        
+        .community-card h3 {
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .community-cta {
+            margin-top: 40px;
+        }
+
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .points-grid, .badges-grid, .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://whatsapp.com/channel/0029VangR3qInlqTFOIT4G1U" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <img src="https://sigmawire.net/i/04/HNj3hY.png" alt="Tech Zone Logo" class="logo">
+                <img src="https://sigmawire.net/i/04/hufLCJ.png" alt="Data Camp Logo" class="logo">
+                <div class="partnership-badge">
+                    <i class="fas fa-handshake"></i>
+                    Partner with Data Camp Donates
+                </div>
+            </div>
+            
+            
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#groups">Study Groups</a></li>
+                    <li><a href="#points">Points System</a></li>
+                    <li><a href="#rewards">Rewards</a></li>
+                    <li><a href="#scholarship">Details</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Master Data Science with Data Camp DIY</h1>
+            <p>Learn data analysis, visualization, and machine learning through our interactive courses and earn rewards for your progress!</p>
+            <a href="#registration" class="cta-button">Start Learning Now</a>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Data Science Learning">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container about-content">
+            <div class="about-text">
+                <h2>What is Data Camp DIY?</h2>
+                <p>Data Camp DIY is an innovative learning platform created by Tech Zone in partnership with Data Camp Donates, designed to make data science education accessible to everyone. Our platform offers interactive courses in data analysis, visualization, and machine learning.</p>
+                <p>Unlike traditional learning methods, Data Camp DIY incorporates gamification elements to keep you motivated. Earn points, collect badges, and climb the leaderboard as you master new skills.</p>
+                <p>Our mission is to democratize data science education and create a community of passionate learners who can apply their skills to real-world problems.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Study Groups Section -->
+    <section id="groups" class="groups-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Join Our Study Groups</h2>
+                <p>Connect with peers at your skill level and accelerate your learning journey</p>
+            </div>
+            </div>
+            <div class="groups-container">
+              
+              
+                <!-- Group 3 -->
+                <div class="group-card animate-float-up delay-2">
+                    <div class="group-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="group-title">DataCamp Scolarship groups | Discussion</h3>
+                    <div class="group-members">
+                        <i class="fas fa-users"></i>
+                        <span>  Only 200 licenses</span>
+                    </div>
+                    <p>To communicate with learners and facilitate the educational process for them</p>
+                    <a href="https://chat.whatsapp.com/I0EKD6YVxCt43gjwMQUqrj" class="join-button">Join Now</a>
+                </div>
+                
+                <!-- Group 1 -->
+                <div class="group-card animate-float-up">
+                    <div class="group-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="group-title">DataCamp Scolarship groups upcoming</h3>
+                    <div class="group-members">
+                        <i class="fas fa-users"></i>
+                        <span>200 licenses upcoming</span>
+                    </div>
+                    <p>To communicate with learners and facilitate the educational process for them</p>
+                    <a href="#" class="join-button">Join Now</a>
+                </div>
+                
+                <!-- Group 2 -->
+                <div class="group-card animate-float-up delay-1">
+                    <div class="group-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="group-title">DataCamp Scolarship groups upcoming</h3>
+                    <div class="group-members">
+                        <i class="fas fa-users"></i>
+                        <span>200 licenses upcoming</span>
+                    </div>
+                    <p>To communicate with learners and facilitate the educational process for them</p>
+                    <a href="#" class="join-button">Join Now</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Points System Section -->
+    <section id="points" class="points-system">
+        <div class="container">
+            <div class="section-header">
+                <h2>Points & Rewards System</h2>
+                <p>Earn points for completing courses, challenges, and contributing to the community. The more points you earn, the higher you climb on the leaderboard!</p>
+            </div>
+            <div class="points-grid">
+                <div class="points-card animate-float-up">
+                    <div class="points-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Course Completion</h3>
+                    <p>Complete any course to earn points based on course difficulty and length.</p>
+                    <div class="points-value">+100 to +500 pts</div>
+                </div>
+                <div class="points-card animate-float-up delay-1">
+                    <div class="points-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Challenges</h3>
+                    <p>Participate in weekly challenges to test your skills and earn bonus points.</p>
+                    <div class="points-value">+50 to +300 pts</div>
+                </div>
+                <div class="points-card animate-float-up delay-2">
+                    <div class="points-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Help</h3>
+                    <p>Help other learners by answering questions in our community forums.</p>
+                    <div class="points-value">+10 to +50 pts</div>
+                </div>
+                <div class="points-card animate-float-up delay-3">
+                    <div class="points-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Perfect Scores</h3>
+                    <p>Achieve perfect scores on course assessments for extra points.</p>
+                    <div class="points-value">+25 to +100 pts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Rewards Section -->
+    <section id="rewards" class="rewards-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Exclusive Achievement Rewards</h2>
+                <p>Earn real-world benefits by completing learning milestones</p>
+            </div>
+            <div class="reward-cards">
+                
+                <!-- Reward 2 -->
+                <div class="reward-card">
+                    <span class="reward-badge">Reward</span>
+                    <div class="reward-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3 class="reward-title">LinkedIn Profile Review</h3>
+                    <div class="reward-requirements">Earn 10,000 XP + complete one real-world project</div>
+                    <p class="reward-description">get a professional LinkedIn profile review to help you stand out to top recruiters.</p>
+                </div>
+                
+                <!-- Reward 1 -->
+                <div class="reward-card">
+                    <span class="reward-badge">Reward</span>
+                    <div class="reward-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="reward-title">Professional CV Makeover</h3>
+                    <div class="reward-requirements">After 25,000 XP + submit a learning report on 3 key takeaways and how you'll apply them</div>
+                    <p class="reward-description">you’ll receive an ATS-optimized CV makeover to boost your job applications.</p>
+                </div>
+                
+                
+                <!-- Reward 3 -->
+                <div class="reward-card">
+                    <span class="reward-badge">Premium Reward</span>
+                    <div class="reward-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="reward-title">Personal Portfolio Website</h3>
+                    <div class="reward-requirements">Reach 50,000 XP + complete two high-quality projects</div>
+                    <p class="reward-description">get a custom personal portfolio website to display your work professionally and attract potential employers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+          <!-- Community Section -->
+      <section id="community" class="community-section">
+          <div class="container">
+              <div class="section-header">
+                  <h2>Join Our Growing Community</h2>
+                  <p>Connect with fellow learners, share projects, and get support</p>
+              </div>
+              
+              <div class="community-features">
+                  <!-- Feature 1 -->
+                  <div class="community-card">
+                      <div class="community-icon">
+                          <i class="fas fa-comments"></i>
+                      </div>
+                      <h3>Discussion Forums</h3>
+                      <p>Get your questions answered and share knowledge with our active community forums.</p>
+                  </div>
+                  
+                  <!-- Feature 2 -->
+                  <div class="community-card">
+                      <div class="community-icon">
+                          <i class="fas fa-users"></i>
+                      </div>
+                      <h3>Study Groups</h3>
+                      <p>Join specialized groups based on your interests and skill level.</p>
+                  </div>
+                  
+                  <!-- Feature 3 -->
+                  <div class="community-card">
+                      <div class="community-icon">
+                          <i class="fas fa-calendar-check"></i>
+                      </div>
+                      <h3>Live Events (Upcoming)</h3>
+                      <p>Participate in weekly webinars, Q&A sessions, and coding challenges.</p>
+                  </div>
+              </div>
+              
+              <div class="community-cta">
+                  <a href="https://techzone-x.github.io/techzone.github.io/" class="cta-button">Join Community Now</a>
+              </div>
+          </div>
+      </section>
+
+    <!-- Scholarship Section -->
+    <section id="scholarship" class="scholarship-section">
+        <div class="container">
+            <div class="scholarship-content">
+                <h2>DataCamp Donates Scholarship</h2>
+                <p>In partnership with TechZone to provide world-class data science education</p>
+                
+                <div class="scholarship-card">
+                    <h3>With This Scholarship, You'll Get:</h3>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Access to 440+ Courses</h4>
+                            <p>Dive into a wide range of topics in data science, AI, and programming</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Interactive Exercises</h4>
+                            <p>Strengthen your skills through hands-on practice and mastering key concepts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Real-World Projects</h4>
+                            <p>Apply your learning to practical scenarios to boost both skills and portfolio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Premium Features</h4>
+                            <p>Unlock Datalab, earn Certification, and access Job Placement Tools</p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfICvpBVfW-xf1yPJkaY9LVwj1GWdY-a0AalJj9tpeKSYr57g/viewform?usp=sf_link" class="apply-button" target="_blank">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="registration">
+        <div class="container registration-content">
+            <h2>Ready to Start Your Data Science Journey?</h2>
+            <p>Join thousands of learners who are mastering data skills with Data Camp DIY. Register now to access all courses and start earning points!</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfICvpBVfW-xf1yPJkaY9LVwj1GWdY-a0AalJj9tpeKSYr57g/viewform?usp=sf_link" class="register-button" target="_blank">
+                Register Now <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="https://sigmawire.net/i/04/SOBmRr.png" alt="Tech Zone Logo">
+                    </div>
+                    <p>Data Camp DIY is created by Tech Zone in partnership with Data Camp Donates to make data science education accessible to everyone.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/techzone1"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VangR3qInlqTFOIT4G1U"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@TechZone-e3z"><i class="fab fa-youtube"></i></a>
+                        <a href="https://github.com/TechZone-community"><i class="fab fa-github"></i></a>
+                        
+
+                        
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="https://linktr.ee/Tech_Zone.1">About Us</a></li>
+                        <li><a href="https://chat.whatsapp.com/I0EKD6YVxCt43gjwMQUqrj">Study Groups</a></li>
+                        <li><a href="#points">Points System</a></li>
+                        <li><a href="#rewards">Rewards</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community Forums</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Data Camp DIY by Tech Zone. All rights reserved. Partnered with Data Camp Donates.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-float-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(30px)';
+                observer.observe(element);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
